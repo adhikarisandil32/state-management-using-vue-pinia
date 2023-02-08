@@ -2,8 +2,11 @@
   <main class="mx-auto px-2">
     <h1 class="my-4 p-4 bg-blue-900 mx-auto text-center text-5xl text-white rounded font-bold">
       Pinia Tasks <br>
-      
     </h1>
+    
+    <TaskForm/>
+
+    <br>
 
     <button @click="filter = 'all'">All Tasks</button>
     <button @click="filter = 'favs'">Fav Tasks</button>
@@ -39,6 +42,7 @@
   import {ref} from 'vue'
   import { useTaskStore } from './store/TaskStore'
   import TaskDetails from './components/TaskDetails.vue'
+  import TaskForm from './components/TaskForm.vue'
 
   const taskStore = useTaskStore()
 
