@@ -3,7 +3,7 @@
     <h1 class="my-4 p-4 bg-blue-900 mx-auto text-center text-5xl text-white rounded font-bold">
       Pinia Tasks <br>
     </h1>
-    
+
     <TaskForm/>
 
     <br>
@@ -14,6 +14,7 @@
 
     <div v-if="filter === 'all'">
       <p>{{taskStore.totalCount}} Total Tasks</p>
+      <hr>
       <div v-for="task in taskStore.tasks" :key="task.id">
         <TaskDetails :task="task"/>
       </div>
@@ -21,6 +22,7 @@
 
     <div v-if="filter === 'favs'">
       <p> {{taskStore.favCount}} Favourite Tasks</p>
+      <hr>
       <div v-for="task in taskStore.favs" :key="task.id">
         <TaskDetails :task="task"/>
       </div>
@@ -28,6 +30,7 @@
 
     <div v-if="filter === 'nonFavs'">
       <p>{{taskStore.nonFavCount}} Non-Favourite Tasks</p>
+      <hr>
       <div v-for="task in taskStore.nonFavs" :key="task.id">
         <TaskDetails :task="task"/>
       </div>

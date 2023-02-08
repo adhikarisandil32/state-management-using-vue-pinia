@@ -5,12 +5,14 @@ import {defineStore} from 'pinia'
 export const useTaskStore = defineStore('taskStr', {
     state: () => ({
         tasks: [
+            //dummy tasks
             {id: 1, title: "run some errands", isFav: false},
             {id: 2, title: "play videogames", isFav: true},
             {id: 3, title: "write some code", isFav: true},
             {id: 4, title: "write an essay", isFav: false}
         ]
     }),
+    //we recieve data to other components as it is or after being manipulated as requirement. It is to be used only as a tool to provide data.
     getters: {
         favs(){
             return this.tasks.filter(t => t.isFav)
@@ -33,6 +35,7 @@ export const useTaskStore = defineStore('taskStr', {
             return this.tasks.length
         }
     },
+    //If we need to perform any actions to the data, this is where we do it.
     actions:{
         addTask(task){
             this.tasks.push(task)

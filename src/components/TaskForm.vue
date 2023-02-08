@@ -4,7 +4,7 @@
             type="text"
             placeholder="I need to..."
             v-model="newTask"
-            class="outline outline-1 px-2 outline-black"
+            class="px-2 outline outline-1 outline-gray-300"
         >
         <button class="ml-2 px-2">Add Task</button>
     </form>
