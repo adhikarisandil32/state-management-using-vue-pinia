@@ -1,4 +1,5 @@
 <template>
+  <!-- The db.json file inside data folder needs to be served via json-server in order for it to work-->
   <main class="mx-auto px-2">
     <h1 class="my-4 p-4 bg-blue-900 mx-auto text-center text-5xl text-white rounded font-bold">
       Pinia Tasks

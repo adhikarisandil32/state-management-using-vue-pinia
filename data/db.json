@@ -1,11 +1,6 @@
 {
   "tasks": [
     {
-      "title": "learn to play chess",
-      "isFav": true,
-      "id": 3396
-    },
-    {
       "title": "cook a meal",
       "isFav": true,
       "id": 5223
