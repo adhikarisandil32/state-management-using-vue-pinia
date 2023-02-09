@@ -1,0 +1,26 @@
+{
+    "tasks":[
+        {
+            {
+                "id": 1,
+                "title": "run some errands",
+                "isFav": false
+            },
+            {
+                "id": 2,
+                "title": "play videogames",
+                "isFav": true
+            },
+            {
+                "id": 3,
+                "title": "write some code",
+                "isFav": true
+            },
+            {
+                "id": 4,
+                "title": "write an essay",
+                "isFav": false
+            }
+        }
+    ]
+}
