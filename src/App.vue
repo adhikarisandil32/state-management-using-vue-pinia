@@ -1,7 +1,7 @@
 <template>
   <main class="mx-auto px-2">
     <h1 class="my-4 p-4 bg-blue-900 mx-auto text-center text-5xl text-white rounded font-bold">
-      Pinia Tasks <br>
+      Pinia Tasks
     </h1>
 
     <TaskForm/>
@@ -12,6 +12,12 @@
     <button @click="filter = 'favs'">Fav Tasks</button>
     <button @click="filter = 'nonFavs'">Non-Fav Tasks</button>
 
+    <!-- For loading -->
+    <div v-if="taskStore.loading">
+      <span>Loading Tasks...</span>
+    </div>
+
+    <!-- All Tasks -->
     <div v-if="filter === 'all'">
       <p>{{taskStore.totalCount}} Total Tasks</p>
       <hr>
@@ -20,6 +26,7 @@
       </div>
     </div>
 
+    <!-- Favourite Tasks -->
     <div v-if="filter === 'favs'">
       <p> {{taskStore.favCount}} Favourite Tasks</p>
       <hr>
@@ -28,6 +35,7 @@
       </div>
     </div>
 
+    <!-- Non Favourite Tasks -->
     <div v-if="filter === 'nonFavs'">
       <p>{{taskStore.nonFavCount}} Non-Favourite Tasks</p>
       <hr>
@@ -48,6 +56,9 @@
   import TaskForm from './components/TaskForm.vue'
 
   const taskStore = useTaskStore()
+
+  //fetch tasks
+  taskStore.getTasks()
 
   let filter = ref('all')
 

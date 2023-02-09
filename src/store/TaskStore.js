@@ -4,13 +4,8 @@ import {defineStore} from 'pinia'
 
 export const useTaskStore = defineStore('taskStr', {
     state: () => ({
-        tasks: [
-            //dummy tasks
-            {id: 1, title: "run some errands", isFav: false},
-            {id: 2, title: "play videogames", isFav: true},
-            {id: 3, title: "write some code", isFav: true},
-            {id: 4, title: "write an essay", isFav: false}
-        ]
+        tasks: [],
+        loading: false
     }),
     //we recieve data to other components as it is or after being manipulated as requirement. It is to be used only as a tool to provide data.
     getters: {
@@ -38,20 +33,58 @@ export const useTaskStore = defineStore('taskStr', {
     },
     //If we need to perform any actions to the data, this is where we do it.
     actions:{
-        addTask(task){
-            this.tasks.push(task)
+        async getTasks(){
+            this.loading = true
+            const res = await fetch('http://localhost:3000/tasks')
+            const data = await res.json()
+
+            this.tasks = data
+            this.loading = false
         },
-        deleteTask(id){
+        async addTask(task){
+            this.tasks.push(task)
+
+            const res = await fetch('http://localhost:3000/tasks', {
+                method: 'POST',
+                body: JSON.stringify(task),
+                headers: {'Content-Type':'application/json'}
+            })
+
+            if(res.error){
+                console.log(res.error)
+            }
+
+        },
+        async deleteTask(id){
             this.tasks = this.tasks.filter(t => {
                 return t.id !== id
             })
+
+            const res = await fetch('http://localhost:3000/tasks/'+id, {
+                method: 'DELETE'
+            })
+
+            if(res.error){
+                console.log(res.error)
+            }
         },
-        toggleFav(id){
+        async toggleFav(id){
+
             const task = this.tasks.find(t => {
                 return t.id === id
             })
             //'find' returns the first element that meets the condition
             task.isFav = !task.isFav
+
+            const res = await fetch('http://localhost:3000/tasks/'+id, {
+                method: 'PATCH',
+                body: JSON.stringify({ isFav: task.isFav}),
+                headers: {'Content-Type':'application/json'}
+            })
+
+            if(res.error){
+                console.log(res.error)
+            }
         }
     }
 })
