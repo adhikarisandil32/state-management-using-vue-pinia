@@ -31,7 +31,7 @@ export const useTaskStore = defineStore('taskStr', {
                 return c.isFav ? p : p+1
             }, 0)
         },
-        //arrow functions can be used as such
+        //if to be used, arrow functions can be used as such
         totalCount: (state) => {
             return state.tasks.length
         }
